@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		i::before,i::after{
+			content: "";
+			display: inline-block;
+			line-height: 20px;
+			width: 20px;
+			height: 2px;
+			background-color: red;
+			margin-bottom: 3px;
+		}
+		i::before{
+			margin-right: 5px;
+		}
+		i::after{
+			margin-left: 5px;
+		}
+
+	</style>
+</head>
+<body>
+	<p>
+		<i>aaa</i>
+	</p>
+</body>
+</html>
