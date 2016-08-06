@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<strong id="times"></strong>
+	<script type="text/javascript">
+window.onload = function getNowTime(){
+    var times = document.getElementById("times");
+	var now= new Date(); 
+	var year=now.getFullYear(); 
+	var month=now.getMonth()+1; 
+	month = a(month);
+	var day=now.getDate(); 
+	day = a(day);
+	var weeks = ["星期一","星期二","星期三","星期四","星期五","星期六","","星期日"];
+	var week=weeks[now.getDay()];
+
+	var hour=now.getHours();
+	var minute=now.getMinutes();
+	var second=now.getSeconds();
+	var ap=null;
+	if(hour<12){ap="上午";}
+		else{ap="下午";}
+
+
+	function a(i){
+    if(i<10){
+    	return i = "0"+i;
+	}else{
+        return i;
+	}}
+	times.innerHTML=year+"年"+month+"月"+day+"日 "+ week+" "+ap+" "+hour+":"+minute+":"+second;    
+	setTimeout(getNowTime,1000);
+}
+	</script>
+</body>
+</html>

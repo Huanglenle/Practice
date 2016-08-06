@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>计时器</title>
+<script type="text/javascript">
+
+var int = null;
+
+
+    function clock(){
+      var time = new Date();                     
+      document.getElementById("clock").value = time;
+
+   }
+    function state(){
+         int = setInterval(clock,1000);
+
+       }
+    //  var tmpID:Number = setInterval(function(){},10);   
+    // while(--tmpID > 0)   
+    // clearInterval(tmpID);  
+    // setInterval(clearAll,1000);   
+       // function clearAll(Void):Void {   
+       //     var tmpId:Number = setInterval(function () {}, 10);   
+       //     while (--tmpId>0) clearInterval(tmpId);   
+       // //            }  
+       //        }
+
+</script>
+</head>
+<body>
+  <form>
+    <input type="text" id="clock" size="50"  />
+    <input type="button" value="Stop" onclick="stopTimer()" />
+    <input type="button" value="state" onclick="state()" />
+  </form>
+</body>
+</html>

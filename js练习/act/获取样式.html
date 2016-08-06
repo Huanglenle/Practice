@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+      #div1{
+      	width: 200px;
+      	height: 200px;
+      	background: #f00;
+         border: 1px solid black;
+      }
+	</style>
+</head>
+<body>
+	  <div id="div1">yes!</div>
+	  <script>
+         window.onload = function(){
+            startMove();        	
+         }
+         function startMove(){
+            setInterval(function(){
+               var oDiv = document.getElementById("div1");
+               oDiv.style.width = parseInt(getStyle(oDiv,"width")) - 2 + "px";
+               oDiv.style.fontSize = parseInt(getStyle(oDiv,"fontSize")) + 1 + "px";
+            },30)
+         }
+
+         //获取内联或外部引用的CSS样式的值
+         function getStyle(obj,attr){
+            if(obj.currentStyle){
+               //IE
+               return obj.currentStyle[attr];
+            }else{
+               //火狐
+               return getComputedStyle(obj,false)[attr];
+            }
+         }  
+	  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <style>
+    body,ul,li{
+        margin:0;
+        padding: 0;
+    }
+       ul{
+       	width: 200px;
+       	height: 500px;
+       }
+       li{
+       	float: left;
+       	width: 200px;
+       	height: 100px;
+       	margin-top: 30px;
+       	background: pink;
+       	list-style: none;
+        border: 1px solid blue;
+        filter:alpha(opacity: 20);
+        opacity: 0.2;
+       }
+
+    </style>
+</head>
+<body>
+	<ul>
+		<li id = "li1"></li>
+		<li id = "li2"></li>
+	</ul>
+  <script>
+   window.onload = function(){
+       // var aLi = document.getElementsByTagName("li");
+       // for(var i = 0;i < aLi.length;i++){
+       //  aLi[i].timer = null; 
+       //  aLi[i].onmouseover = function(){
+       //        startMove(this,400);
+       //  }
+       //  aLi[i].onmouseout = function(){
+       //        startMove(this,200);
+       //  }
+       // }
+       var Li1 = document.getElementById("li1");
+       var Li2 = document.getElementById("li2");
+       Li1.onmouseover = function(){
+            startMove(this,"opacity",100);
+       }
+       Li1.onmouseout = function(){
+            startMove(this,"opacity",20);
+       }
+       Li2.onmouseover = function(){
+            startMove(this,"height",400);
+       }
+       Li2.onmouseout = function(){
+            startMove(this,"height",50);
+       }
+   }
+   var alpha = 20;
+   function startMove(obj,attr,iTarget){
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        var icur = 0;
+        if(attr == "opacity"){
+           icur = Math.round(parseFloat(getStyle(obj,attr))*100);
+        }else{
+           icur = parseInt(getStyle(obj,attr));
+        }
+
+        var speed = (iTarget - icur)/8;
+        speed = speed>0?Math.ceil(speed):Math.floor(speed);
+
+        if(icur == iTarget){
+            clearInterval(obj.timer);
+        }else{
+           if(attr == "opacity"){
+             obj.style.filter = "alpha:(opacity:"+(icur+speed)+")";
+             obj.style.opacity = (icur + speed)/100; 
+           }else{
+             obj.style[attr] = icur + speed +"px";
+           }
+        }
+      },30)
+   }
+
+   function getStyle(obj,attr){
+        if(obj.currentStyle){
+          return obj.currentStyle[attr];
+        }else{
+          return  getComputedStyle(obj,false)[attr];
+
+        }
+   }
+  </script>
+</body>
+</html>

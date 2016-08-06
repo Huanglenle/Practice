@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div class="content2">
+	<div class="txtShow">还剩<span id="timeShow">时间</span></div>
+</div>
+	<script>
+     window.onload = function(){
+           leftTime();
+
+     }
+     function add(i){
+     	if(i < 10){
+           return i = "0" + i;
+     	}else{
+           return i;
+     	}
+
+     }
+
+     function leftTime(){
+     	// var endTime = new Date("2016/9/1,12:20:12");
+
+        // 距离当前时间的一个小时之后
+        // *1000   --->毫秒
+        var endTime = setTime(endTime.getTime() + 3600*1000);
+
+     	var nowTime = new Date();
+
+     	var lTime = parseInt((endTime.getTime() - nowTime.getTime())/1000);
+     	
+
+     	var day = parseInt(lTime/(24*60*60));
+     	day = add(day);
+
+     	var hours =parseInt(lTime/(60*60)%24);
+     	hours = add(hours);
+
+     	var min = parseInt(lTime/60%60);
+     	min = add(min);
+
+     	var sec =parseInt(lTime%60);
+     	sec = add(sec);
+
+
+     	timeShow.innerHTML = day + "天" + hours + "时" + min + "分" + sec + "秒";
+     	if(lTime <= 0){
+          timeShow.innerHTML = "活动已结束";
+     	}else{
+     	setInterval(leftTime,1000);
+      }
+  }
+	</script>
+</body>
+</html>

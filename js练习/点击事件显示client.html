@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Click Me</title>
+	
+</head>
+<body>
+	<script>
+       window.onload=function(){
+          document.onclick=function(a){
+
+           	var oEvent=a||event;
+           	alert(oEvent.clientX+','+oEvent.clientY);
+
+           }
+       }
+	</script>
+</body>
+</html>
+

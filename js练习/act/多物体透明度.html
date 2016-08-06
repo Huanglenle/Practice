@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+    body,div{
+    	margin: 0px;
+    	padding: 0px;
+    }
+    div{
+    	width:140px;
+    	height: 185px;
+    	background:url("../act/545.jpg") ;
+    	background-size: 100%;
+      margin-left: 30px;
+    	filter:alpha(opacity: 20);
+    	opacity: 0.2;
+      float: left;
+    }
+	</style>
+</head>
+<body>
+	<div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+	<script>
+      window.onload = function(){
+      	var oDiv = document.getElementsByTagName("div");
+        for(var i = 0;i < oDiv.length;i++){
+        oDiv[i].alpha =20;
+        // oDiv[i].timer = null;
+      	oDiv[i].onmouseover = function(){
+              startMove(this,100);
+      	}
+      	oDiv[i].onmouseout = function(){
+              startMove(this,20);
+      	}
+       }
+      }
+      // var timer = null,
+       //var alpha = 20;
+      function startMove(obj,iTarget){
+      	clearInterval(obj.timer);
+      	 // var oDiv = document.getElementById("div1");
+      	obj.timer = setInterval(function(){
+      	 	if(obj.alpha > iTarget){
+      	 		speed = -10;
+      	 	}else{
+      	 		speed = 10;
+      	 	}
+      	 	if(obj.alpha == iTarget){
+      	 		clearInterval(obj.timer);
+      	 	}else{
+                obj.alpha+=speed;
+                obj.style.filter = "obj.alpha(opacity:"+obj.alpha+")";
+                obj.style.opacity = obj.alpha/100;
+      	 	}
+              
+      	 },30)
+      	}
+	</script>
+</body>
+</html>
