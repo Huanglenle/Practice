@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时钟</title>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <script src="clock.js"></script>
+    <script>
+        var camera,scene,renderer;
+        var mesh;
+        var texture;
+
+        function start(){
+            clock();
+            init();
+            animate();
+        }
+
+        function init(){
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, width.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            camera = new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,1,1000);
+            camera.position.z = 400;
+            scene = new THREE.Scene();
+
+            var geometry = new THREE.CubeGeometry(150,150,150);
+            texture = new THREE.Texture(canvas);
+
+
+
+        }
+
+
+    </script>
+</body>
+</html>

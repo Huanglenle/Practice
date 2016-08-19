@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="../three.min.js"></script>
+<script>
+    //场景
+    var scene = new THREE.Scene();
+    //相机
+    var camera = new THREE.PerspectiveCamera(55,window.innerWidth/window.innerHeight,0.1,1000);
+    //渲染器
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize = (window.innerWidth,window.innerHeight);
+
+    //插入canvas元素
+    document.body.appendChild(renderer.domElement);
+
+    var geometry = new THREE.CubeGeometry(2,2,2);
+    var material = new THREE.MeshBasicMaterial({color:0x880000});
+    var cube = new THREE.Mesh(geometry,material);
+    scene.add(cube);
+    camera.position.z = 4;
+    function render(){
+        //requestAnimationFrame是让浏览器去执行一次参数中的函数
+        requestAnimationFrame(render);
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render(scene,camera);
+    }
+    render();
+
+
+</script>
+</body>
+</html>

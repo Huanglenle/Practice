@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style type="text/css">
+    div#canvas-frame {
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        height: 600px;
+        background-color: #EEEEEE;
+    }
+</style>
+<body onload="threeStart();">
+<script src="../three.min.js"></script>
+<script>
+    //创建渲染器
+    var renderer;
+    function initThree(){
+        width = document.getElementById("canvas-frame").clientWidth;
+        height = document.getElementById("canvas-frame").clientHeight;
+
+        //生成渲染器对象，属性：锯齿效果为true
+        renderer = new THREE.WebGLRenderer({
+            antialias:true
+        });
+        renderer.setSize(width,height);
+
+        // 追加canvas元素到canvas-frame中
+        //canvas对象的获取方法为renderer.domElement；
+        document.getElementById("canvas-frame").appendChild(renderer.domElement);
+        renderer.setClearColor(0xFFFFFF,1.0);
+    }
+
+    //创建相机
+    var camera;
+    function initCamera(){
+        camera = new THREE.PerspectiveCamera(45,width/height,1,10000);
+        //此处为设置透视投影的相机，默认情况下，相机的上方向为y轴，右方向为x轴，
+        //沿着z轴垂直朝里（视眼角：fov;纵横比：aspect;相机离视最近距离:near;相机离视最远距离：far）
+
+        camera.position.x = 0;//设置相机的位置坐标
+        camera.position.y = 1000;
+        camera.position.z = 0;
+        camera.up.x = 0;//设置相机的上为y轴方向
+        camera.up.y = 0;
+        camera.up.z = 1;
+        camera.lookAt({
+            x:0,
+            y:0,
+            z:0
+        });
+    }
+
+    //创建场景
+    var scene;
+    function initScene(){
+        scene = new THREE.Scene();
+    }
+
+    //创建平行光
+    var light;
+    function initLight(){
+        light  = new THREE.DirectionalLight(0xFF0000,1.0,0);
+        //设置光源位置
+        light.position.set(100,100,200);
+        //追加光源到场景
+        scene.add(light);
+    }
+
+    var cube = Array();
+    function initObject(){
+        //定义一个几何体
+        var geometry = new THREE.Geometry();
+        //定义先的材质
+        var material = new THREE.LineBasicMaterial({vertexColors:true});
+        var color1 = new THREE.Color(0x62A31D),
+             color2 = new THREE.Color(0xFF0000);
+
+        //线的材质可以由2点的颜色决定
+        var p1 = new THREE.Vector3( -500, 0,300 );
+        var p2 = new THREE.Vector3(  500, 0, -300 );
+        geometry.vertices.push(p1);
+        geometry.vertices.push(p2);
+        geometry.colors.push( color1, color2 );
+
+        var line = new THREE.Line(geometry,material,THREE.LinePieces);
+        scene.add(line);
+    }
+
+    function render(){
+        renderer.clear();
+        renderer.render(scene,camera);
+        requestAnimationFrame(render);
+    }
+
+    function threeStart(){
+        initThree();//渲染器
+        initCamera();//相机
+        initScene();//场景
+        initLight();//灯光
+        initObject();//物品
+        render();//执行
+    }
+</script>
+
+<div id="canvas-frame"></div>
+
+</body>
+</html>
